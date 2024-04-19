@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>To-Do List</title>
+    <title>Add | To-Do List</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Bebas+Neue&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Dancing+Script:wght@400..700&family=Inter:wght@100..900&family=Jersey+25&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Color+Emoji&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sedan:ital@0;1&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Bebas+Neue&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Dancing+Script:wght@400..700&family=Inter:wght@100..900&family=Jersey+25&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Color+Emoji&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sedan:ital@0;1&display=swap" rel="stylesheet">    
-    <link rel="stylesheet" href="../css/styles.css">
     <style>
         body{
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -35,6 +34,7 @@
             font-weight: 700;
             font-size: 2.6em;
             letter-spacing: 4px;
+            text-transform: capitalize;
             text-decoration: underline rgba(238, 51, 66, 0.618);
             text-underline-offset: 12px;
             text-align: center;
@@ -129,12 +129,41 @@
             transform: translate3d(30%, 7%, 2%);
             transition: all 0.3s ease-in-out;
         }
+
+        .container p{
+            float: right;
+            margin-top: 0px;
+            border: 3px transparent salmon;
+            border-radius: 8px;
+            box-shadow: -10px 5px 5px #ffffffa5;
+            background: rgba(3, 57, 3, 0.656);
+            padding: 7px 14px;
+        }
+
+        .container p:hover{
+            background: rgba(11, 75, 11, 0.656);
+        }
+
+        .container p a{
+            color: #fff;
+            padding: 8px 0px;
+            text-decoration: none;
+            letter-spacing: 3px;
+            text-transform: capitalize;
+        }
+
+        .container p a:hover{
+            color: salmon;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <h1>Add note!</h1>
 
-        <h1>To-Do List</h1>
+        <p>
+            <a href="{% url 'index' %}">go back</a>
+        </p>
 
         <form action="{% url 'add_task' %}" method="post">
             {% csrf_token %}
