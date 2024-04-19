@@ -2,18 +2,152 @@
 <html>
 <head>
     <title>To-Do List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Bebas+Neue&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Dancing+Script:wght@400..700&family=Inter:wght@100..900&family=Jersey+25&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Color+Emoji&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sedan:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Bebas+Neue&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Dancing+Script:wght@400..700&family=Inter:wght@100..900&family=Jersey+25&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Color+Emoji&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sedan:ital@0;1&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        body{
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-family: "Inter", sans-serif;
+            background: #241206;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container{
+            cursor: pointer;
+            border: 3px solid #e345;
+            border-radius: 8px;
+            width: 600px;
+            height: 600px;
+            margin: 24px 30px;
+            padding: 22px 32px;
+        }
+
+        .container h1{
+            font-family: "Dancing Script", cursive;
+            font-weight: 700;
+            font-size: 2.6em;
+            letter-spacing: 4px;
+            text-decoration: underline rgba(238, 51, 66, 0.618);
+            text-underline-offset: 12px;
+            text-align: center;
+            padding: 16px;
+            transform: translateY(-10%);
+            box-shadow: -10px 6px 10px 3px #e345;
+            border-radius: 8px;
+        }
+
+        .container h1:hover{
+            box-shadow: 3px 13px 33px 13px #e345;
+            border-radius: 3px;
+        }
+
+        .container form{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px transparent salmon;
+            border-radius: 6px;
+            margin: 20px 10px;
+            padding: 32px 20px;
+
+        }
+
+        .container form input{
+            letter-spacing: 2px;
+            padding: 10px 20px;
+            border-radius: 6px;
+        }
+        
+        .container form button{
+            margin: 0px 20px;
+            padding: 12px 28px;
+            background-color: #022a06;
+            cursor: pointer;
+            color: #fff;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            letter-spacing: 4px;
+            text-transform: capitalize;
+            rotate:  1deg;
+        }
+
+        .container form button:hover{
+            box-shadow: 21px 2px 8px #e345;
+            transform: translate3d(30%, 7%, 2%);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .container #task{
+            border: 2px transparent salmon;
+            margin-top: 0px;
+            padding: 8px 20px;
+        }
+
+        .container #task li{
+            text-transform: capitalize;
+            list-style-type: none;
+            letter-spacing: 2px;
+            padding: 12px 20px;
+            margin: 6px 0px;
+        }
+
+        .container #task li:hover{
+            border: 3px transparent rgb(78, 21, 14);
+            cursor: crosshair;
+        }
+
+        .container #task li a{
+            border: 2px solid #e345;
+            border-radius: 8px;
+            float: right;
+            display: inline-block;
+            margin-top: 0px;
+            padding: 10px 14px;
+            letter-spacing: 3px;
+            text-decoration: none;
+            width: fit-content;
+            background-color: #261202e4;
+            color: white;
+            /* font-size: 20px; */
+            line-height: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .container #task li a:hover{
+            border: 3px solid rgb(78, 21, 14);
+            box-shadow: 10px 6px 10px 3px #e345;
+            transform: translate3d(30%, 7%, 2%);
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
 </head>
 <body>
-    <h1>To-Do List</h1>
-    <form action="{% url 'add_task' %}" method="post">
-        {% csrf_token %}
-        <input type="text" name="title" required>
-        <button type="submit">Add</button>
-    </form>
-    <ul>
-        {% for task in tasks %}
-        <li>{{ task.title }} <a href="{% url 'delete_task' task.id %}">Delete</a></li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+
+        <h1>To-Do List</h1>
+
+        <form action="{% url 'add_task' %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="title" required>
+            <button type="submit">add</button>
+        </form>
+
+        <ul id="task">
+            {% for task in tasks %}
+            <li>{{ task.title }} <a href="{% url 'delete_task' task.id %}">Delete</a></li>
+            {% endfor %}
+        </ul>
+
+    </div>
 </body>
 </html>
