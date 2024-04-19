@@ -20,10 +20,22 @@
             align-items: center;
         }
 
+        .container{
+            cursor: pointer;
+            border: 3px solid #e345;
+            border-radius: 8px;
+            width: 600px;
+            height: 600px;
+            margin: 24px 30px;
+            padding: 22px 32px;
+        }
+
         .container h1{
             font-family: "Dancing Script", cursive;
             font-size: 4em;
             text-transform: capitalize;
+            text-decoration: underline #712d00;
+            text-underline-offset: 12px;
             letter-spacing: 4px;
             padding: 2px 22px;
         }
@@ -31,6 +43,7 @@
         .container p{
             float: right;
             margin-top: 0px;
+            margin-bottom: 10px;
             border: 3px transparent salmon;
             border-radius: 8px;
             box-shadow: -10px 5px 5px #ffffffa5;
@@ -54,19 +67,69 @@
             color: salmon;
         }
 
+        .container #task{
+            border: 2px transparent salmon;
+            margin-top: 0px;
+            padding: 8px 20px;
+        }
+
+        .container #task li{
+            color: rgb(184, 131, 99);
+            text-transform: capitalize;
+            list-style-type: none;
+            letter-spacing: 2px;
+            padding: 12px 20px;
+            margin: 6px 0px;
+        }
+
+        .container #task li:hover{
+            border: 3px transparent rgb(78, 21, 14);
+            cursor: crosshair;
+        }
+
+        .container #task li a{
+            border: 2px solid #e345;
+            border-radius: 8px;
+            float: right;
+            display: inline-block;
+            margin-top: 0px;
+            padding: 10px 14px;
+            letter-spacing: 3px;
+            text-decoration: none;
+            width: fit-content;
+            background-color: #261202e4;
+            color: rgb(184, 131, 99);
+            /* font-size: 20px; */
+            line-height: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .container #task li a:hover{
+            border: 3px solid rgb(78, 21, 14);
+            box-shadow: 10px 6px 10px 3px #e345;
+            transform: translate3d(30%, 7%, 2%);
+            transition: all 0.3s ease-in-out;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
         <h1>view notes!</h1>
-
+<!-- 
         <p>
             <a href="{% url 'index' %}">go back</a>
-        </p>
+        </p> -->
 
-       
-    </div>
-    
+       <div class="view-data">
+            <ul id="task">
+                {% for task in tasks %}
+                <li>{{ task.title }} <a href="{% url 'delete_task' task.id %}">Delete</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>    
 </body>
 </html>
