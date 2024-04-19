@@ -15,6 +15,9 @@ Create migrations:
 
 Apply migrations:
 >>python manage.py migrate
+>>
+>>Optional unless migration is not applied
+>>python manage.py makemigrations --empty todo_list  
 
 Start Django development server:
 >>python manage.py runserver
