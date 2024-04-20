@@ -1,19 +1,186 @@
+{% load static %} 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>To-Do List</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title> 
+
+    <style>
+        /* Reset default browser styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .title-bar {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .title-bar h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .logo {
+            max-width: 100px;
+            height: auto;
+            vertical-align: middle;
+        }
+
+        .task-form {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .task-form input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .task-form button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .task-list {
+            list-style-type: none;
+            margin-top: 20px;
+        }
+
+        .task-list li {
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .task-list li a {
+            color: #333;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .task-list li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer styles */
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-content p {
+            margin: 0;
+        }
+        
+        .social-icons {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .social-icons li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        
+        .social-icons li:last-child {
+            margin-right: 0;
+        }
+        
+        .social-icons a {
+            color: #fff;
+            font-size: 20px;
+            text-decoration: none;
+        }
+        
+        .social-icons a:hover {
+            color: #bbb;
+        }
+        
+    </style>
 </head>
 <body>
-    <h1>To-Do List</h1>
-    <form action="{% url 'add_task' %}" method="post">
-        {% csrf_token %}
-        <input type="text" name="title" required>
-        <button type="submit">Add</button>
-    </form>
-    <ul>
-        {% for task in tasks %}
-        <li>{{ task.title }} <a href="{% url 'delete_task' task.id %}">Delete</a></li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <div class="title-bar">
+            <h1>
+                <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
+                To-Do Solo
+            </h1>
+        </div>
+        <form class="task-form" action="{% url 'add_task' %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="title" placeholder="Add a new task..." required>
+            <button type="submit">Add</button>
+        </form>
+        <ul class="task-list">
+            {% for task in tasks %}
+            <li>{{ task.title }} <a href="{% url 'delete_task' task.id %}">Delete</a></li>
+            {% endfor %}
+        </ul>
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-content">
+                <p>&copy; 2024 To-Do Solo</p>
+                <ul class="social-icons">
+                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
 </body>
 </html>
