@@ -29,3 +29,6 @@ Query data from Django shell:
 >>from todo_list.models import Task
 >>all_tasks = Task.objects.all()
 >>print(all_tasks)
+
+
+#modified the template by including a title bar and footer for appealiness
